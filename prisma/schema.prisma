@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  DONOR
+  NGO
+}
+
+enum Unit {
+  KG
+  PLATES
+}
+
+enum ListingStatus {
+  AVAILABLE
+  CLAIMED
+  EXPIRED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      Role
+  phone     String?
+  orgName   String?  @map("org_name")
+  latitude  Float?
+  longitude Float?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  listings FoodListing[]
+  claims   Claim[]
+
+  @@map("users")
+}
+
+model FoodListing {
+  id       String        @id @default(cuid())
+  donorId  String        @map("donor_id")
+  foodType String        @map("food_type")
+  quantity Float
+  unit     Unit
+  prepTime DateTime      @map("prep_time")
+  photoUrl String?       @map("photo_url")
+  status   ListingStatus @default(AVAILABLE)
+  address  String?
+  latitude  Float
+  longitude Float
+  notes    String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  donor User   @relation(fields: [donorId], references: [id])
+  claim Claim?
+
+  @@map("food_listings")
+}
+
+model Claim {
+  id        String   @id @default(cuid())
+  listingId String   @unique @map("listing_id")
+  ngoId     String   @map("ngo_id")
+  qrCode    String   @map("qr_code")
+  claimedAt DateTime @default(now()) @map("claimed_at")
+
+  listing FoodListing @relation(fields: [listingId], references: [id])
+  ngo     User        @relation(fields: [ngoId], references: [id])
+
+  @@map("claims")
+}
