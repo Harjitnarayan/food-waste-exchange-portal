@@ -11,8 +11,8 @@ import type { FoodListing } from "@/lib/types";
 const MapView = dynamic(() => import("@/components/MapView"), {
     ssr: false,
     loading: () => (
-        <div className="flex h-[500px] items-center justify-center rounded-2xl border border-slate-700 bg-slate-800/50">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-eco-400 border-t-transparent" />
+        <div className="flex h-[500px] items-center justify-center rounded-2xl border border-gray-200 bg-gray-50">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-eco-500 border-t-transparent" />
         </div>
     ),
 });
@@ -65,9 +65,9 @@ export default function NGODashboard() {
     return (
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
             {/* Header */}
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold text-white">Available Food Nearby</h1>
-                <p className="mt-1 text-slate-400">
+            <div className="mb-8 animate-fade-in">
+                <h1 className="text-3xl font-bold text-gray-900">Available Food Nearby</h1>
+                <p className="mt-1 text-gray-500">
                     {geoLoading
                         ? "Detecting your location..."
                         : `Showing food within 10km · ${nearbyListings.length} listing${nearbyListings.length !== 1 ? "s" : ""} found`}
@@ -75,12 +75,12 @@ export default function NGODashboard() {
             </div>
 
             {/* View Toggle */}
-            <div className="mb-6 flex items-center gap-2">
+            <div className="mb-6 flex items-center gap-2 animate-fade-in-up" style={{ animationDelay: "100ms" }}>
                 <button
                     onClick={() => setView("list")}
-                    className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${view === "list"
-                            ? "bg-eco-500/15 text-eco-400 border border-eco-500/30"
-                            : "text-slate-400 border border-slate-700 hover:border-slate-600 hover:text-white"
+                    className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${view === "list"
+                        ? "bg-eco-50 text-eco-700 border border-eco-200 shadow-sm"
+                        : "text-gray-500 border border-gray-200 hover:border-gray-300 hover:text-gray-700 hover:bg-gray-50"
                         }`}
                 >
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -90,9 +90,9 @@ export default function NGODashboard() {
                 </button>
                 <button
                     onClick={() => setView("map")}
-                    className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all ${view === "map"
-                            ? "bg-eco-500/15 text-eco-400 border border-eco-500/30"
-                            : "text-slate-400 border border-slate-700 hover:border-slate-600 hover:text-white"
+                    className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${view === "map"
+                        ? "bg-eco-50 text-eco-700 border border-eco-200 shadow-sm"
+                        : "text-gray-500 border border-gray-200 hover:border-gray-300 hover:text-gray-700 hover:bg-gray-50"
                         }`}
                 >
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -100,10 +100,10 @@ export default function NGODashboard() {
                     </svg>
                     Map View
                 </button>
-                <div className="ml-auto flex items-center gap-3 text-xs text-slate-500">
-                    <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Safe</span>
-                    <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-amber-400" /> Expiring</span>
-                    <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-red-400" /> Urgent</span>
+                <div className="ml-auto flex items-center gap-3 text-xs text-gray-400">
+                    <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Safe</span>
+                    <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-amber-500" /> Expiring</span>
+                    <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-red-500" /> Urgent</span>
                 </div>
             </div>
 

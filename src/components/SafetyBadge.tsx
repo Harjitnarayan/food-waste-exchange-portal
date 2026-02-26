@@ -9,31 +9,31 @@ interface SafetyBadgeProps {
 
 const statusConfig = {
     green: {
-        bg: "bg-emerald-500/20",
-        text: "text-emerald-400",
-        border: "border-emerald-500/30",
-        dot: "bg-emerald-400",
+        bg: "bg-emerald-50",
+        text: "text-emerald-700",
+        border: "border-emerald-200",
+        dot: "bg-emerald-500",
         label: "Safe",
     },
     yellow: {
-        bg: "bg-amber-500/20",
-        text: "text-amber-400",
-        border: "border-amber-500/30",
-        dot: "bg-amber-400",
+        bg: "bg-amber-50",
+        text: "text-amber-700",
+        border: "border-amber-200",
+        dot: "bg-amber-500",
         label: "Expiring Soon",
     },
     red: {
-        bg: "bg-red-500/20",
-        text: "text-red-400",
-        border: "border-red-500/30",
-        dot: "bg-red-400",
+        bg: "bg-red-50",
+        text: "text-red-700",
+        border: "border-red-200",
+        dot: "bg-red-500",
         label: "Urgent",
     },
     expired: {
-        bg: "bg-slate-500/20",
-        text: "text-slate-400",
-        border: "border-slate-500/30",
-        dot: "bg-slate-400",
+        bg: "bg-gray-50",
+        text: "text-gray-500",
+        border: "border-gray-200",
+        dot: "bg-gray-400",
         label: "Expired",
     },
 };
@@ -50,11 +50,11 @@ export default function SafetyBadge({ prepTime, size = "md" }: SafetyBadgeProps)
 
     return (
         <div
-            className={`inline-flex items-center gap-2 rounded-full border ${config.bg} ${config.border} ${config.text} ${sizeClasses[size]} font-medium`}
+            className={`inline-flex items-center gap-2 rounded-full border ${config.bg} ${config.border} ${config.text} ${sizeClasses[size]} font-medium shadow-sm backdrop-blur-sm`}
         >
             <span className={`h-2 w-2 rounded-full ${config.dot} ${status === "red" ? "animate-pulse" : ""}`} />
             <span>{formatted}</span>
-            <span className="opacity-60">·</span>
+            <span className="opacity-40">·</span>
             <span className="opacity-80">{config.label}</span>
         </div>
     );

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-    themeColor: "#059669",
+    themeColor: "#ffffff",
     width: "device-width",
     initialScale: 1,
 };
@@ -23,7 +23,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="dark">
+        <html lang="en">
             <head>
                 <link
                     rel="stylesheet"
@@ -31,7 +31,7 @@ export default function RootLayout({
                     crossOrigin=""
                 />
             </head>
-            <body className="flex min-h-screen flex-col">
+            <body className="flex min-h-screen flex-col bg-white">
                 <Navbar />
                 <main className="flex-1">{children}</main>
                 <Footer />
