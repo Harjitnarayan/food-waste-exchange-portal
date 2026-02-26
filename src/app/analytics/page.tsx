@@ -159,7 +159,7 @@ export default function AnalyticsPage() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-50">
-                            {mockListings.slice(0, 5).map((listing) => (
+                            {claimedListings.slice(0, 5).map((listing) => (
                                 <tr key={listing.id} className="text-gray-600 transition-colors hover:bg-gray-50/50">
                                     <td className="py-3 pr-4 font-medium text-gray-900">{listing.foodType}</td>
                                     <td className="py-3 pr-4">{listing.quantity} {listing.unit === "KG" ? "kg" : "plates"}</td>

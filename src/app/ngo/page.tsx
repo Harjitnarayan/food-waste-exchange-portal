@@ -2,7 +2,6 @@
 import React, { useState, useMemo, useCallback } from "react";
 import dynamic from "next/dynamic";
 import ListingFeed from "@/components/ListingFeed";
-import SafetyBadge from "@/components/SafetyBadge";
 import { useGeolocation, getDistanceKm } from "@/hooks/useGeolocation";
 import { getAvailableListings } from "@/lib/mock-data";
 import type { FoodListing } from "@/lib/types";

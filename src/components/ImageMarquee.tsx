@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 
 interface MarqueeImage {
     src: string;
@@ -115,12 +116,14 @@ export default function ImageMarquee({
                             borderRadius,
                         }}
                     >
-                        <img
+                        <Image
                             src={img.src}
                             alt={img.alt}
-                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                             loading="lazy"
                             draggable={false}
+                            sizes={`${imageWidth}px`}
                         />
                         {/* Hover overlay with title */}
                         <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">

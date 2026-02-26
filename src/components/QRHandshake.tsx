@@ -57,6 +57,9 @@ export default function QRHandshake({ qrCode, listingId, foodType }: QRHandshake
                         <p className="mt-4 text-center text-xs font-mono text-gray-400 break-all">
                             {qrCode}
                         </p>
+                        <p className="mt-1 text-center text-xs text-gray-300">
+                            Ref: {listingId}
+                        </p>
                         <button
                             onClick={() => setShowModal(false)}
                             className="mt-6 w-full rounded-xl border-2 border-gray-200 bg-white py-3 text-sm font-semibold text-gray-700 transition-all duration-300 hover:bg-gray-50 hover:border-gray-300"

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import SafetyBadge from "./SafetyBadge";
 import QRHandshake from "./QRHandshake";
 import { useExpiryTimer } from "@/hooks/useExpiryTimer";
@@ -51,11 +52,13 @@ export default function FoodListingCard({
         >
             {/* Photo Header – real food image */}
             <div className="relative h-48 overflow-hidden">
-                <img
+                <Image
                     src={getFoodImage(listing.foodType)}
                     alt={listing.foodType}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 {/* Status badge overlay */}

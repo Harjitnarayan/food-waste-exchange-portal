@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PostSurplusPage() {
     const [foodType, setFoodType] = useState("");
@@ -25,6 +26,10 @@ export default function PostSurplusPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        // In production, upload the photo file to storage
+        if (photo) {
+            console.log("Submitting with photo:", photo.name, photo.size);
+        }
         setSubmitted(true);
     };
 
@@ -90,7 +95,7 @@ export default function PostSurplusPage() {
                     >
                         {photoPreview ? (
                             <div className="relative h-48">
-                                <img src={photoPreview} alt="Food preview" className="h-full w-full object-cover" />
+                                <Image src={photoPreview} alt="Food preview" fill className="object-cover" unoptimized />
                                 <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                                     <span className="text-sm font-medium text-white">Change Photo</span>
                                 </div>

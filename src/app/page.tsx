@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import ImageMarquee from "@/components/ImageMarquee";
 
@@ -184,11 +185,13 @@ export default function HomePage() {
                             >
                                 {/* Image header */}
                                 <div className="relative h-44 overflow-hidden">
-                                    <img
+                                    <Image
                                         src={item.image}
                                         alt={item.title}
-                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         loading="lazy"
+                                        sizes="(max-width: 640px) 100vw, 33vw"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent" />
                                     <div className="absolute left-4 top-4 rounded-full bg-eco-500 px-3 py-1 text-xs font-bold text-white shadow-lg">
